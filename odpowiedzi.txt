@@ -1,0 +1,35 @@
+zad 1
+1. SELECT * FROM customers WHERE country="Germany";
+2. SELECT * FROM customers WHERE city="Berlin";
+3. SELECT * FROM customers WHERE country="Germany" AND city="Berlin";
+4. SELECT * FROM customers WHERE city="Berlin" OR "Munchen" AND country="Germany";
+5. SELECT * FROM customers WHERE country NOT LIKE "Germany" OR "USA";
+6. SELECT * FROM customers ORDER BY country ASC;
+7. SELECT * FROM customers ORDER BY country DESC;
+8. SELECT * FROM customers ORDER BY country DESC, customer_name ASC;
+
+zad 2
+1. SELECT MIN(price) FROM products;
+2. SELECT MAX(price) FROM products;
+3. SELECT COUNT(unit) FROM products;
+4. SELECT COUNT(customer_name),country FROM customers GROUP BY country;
+5. SELECT COUNT(*),country FROM customers GROUP BY country;
+6. SELECT COUNT(name),AVG(price) FROM products WHERE category_id="1";
+7. SELECT SUM(price) FROM products WHERE category_id="2";
+8. SELECT MAX(price) FROM products WHERE category_id="1" OR category_id="2";
+
+zad 3
+1. SELECT * FROM `products` WHERE price BETWEEN 10 AND 20;
+2. SELECT * FROM `products` WHERE price NOT BETWEEN 10 AND 20;
+3. SELECT * FROM `products` WHERE category_id IN (1,2,3);
+4. SELECT * FROM `orders` WHERE shipper_id IN (1,2,3);
+5.
+6.
+7.
+
+zad 4
+1.
+2.
+3.
+4.
+5.
