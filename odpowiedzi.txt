@@ -28,7 +28,7 @@ zad 3
 7. SELECT * FROM orders WHERE customer_id IN (SELECT customer_id FROM orders WHERE customer_id BETWEEN 77 AND 90);
 
 zad 4
-1.
+1. SELECT * FROM customers JOIN orders ON orders.customers_id=customers.id
 2.
 3.
 4.
