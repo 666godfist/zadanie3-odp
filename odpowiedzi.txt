@@ -27,9 +27,19 @@ zad 3
 6. SELECT * FROM orders WHERE time (order_date) BETWEEN 1996-07-01 AND 1996-07-31;
 7. SELECT * FROM orders WHERE customer_id IN (SELECT customer_id FROM orders WHERE customer_id BETWEEN 77 AND 90);
 
-zad 4
+zad 4a
 1. SELECT * FROM customers JOIN orders ON orders.customers_id=customers.id
-2.
-3.
-4.
-5.
+2. SELECT o.customer_id , COUNT(o.id) FROM customers C LEFT JOIN orders o ON o.customer_id =c.id;
+3. SELECT o.customer_id , o.id FROM customers C INNER JOIN orders o ON o.customer_id =c.id;
+4. SELECT customer_name , o.id FROM customers C RIGHT JOIN orders o ON o.customer_id =c.id;
+
+zad 5
+1. SELECT * FROM orders LIMIT 10 OFFSET 186
+2. SELECT * FROM orders LIMIT 10 OFFSET 10
+
+zad 6
+1. 
+2. 
+3. 
+4. 
+5. 
