@@ -38,8 +38,29 @@ zad 5
 2. SELECT * FROM orders LIMIT 10 OFFSET 10
 
 zad 6
-1. 
-2. 
-3. 
-4. 
-5. 
+1. SELECT COUNT(id), country FROM customers GROUP BY country HAVING COUNT(id) > 5;
+2. SELECT c.customer_name, COUNT(c.id) FROM customers AS c JOIN orders AS o ON o.customer_id = c.id GROUP By c.id HAVING COUNT(c.id) > 2 and COUNT(c.id) < 4;
+3. SELECT e.first_name, e.last_name, COUNT(o.id) FROM employees AS e JOIN orders as o ON o.employee_id = e.id GROUP By e.id HAVING COUNT(o.id) > 10;
+4. SELECT e.last_name, EXISTS(SELECT COUNT(o.id) FROM orders AS o WHERE o.employee_id = e.id HAVING COUNT(o.id)) FROM employees as e WHERE e.last_name="Davolio" OR e.last_name="Fuller";
+5. SELECT id, name, contact_name, address, city, post_code, country, phone FROM suppliers AS s WHERE EXISTS( SELECT p.id FROM products AS p WHERE p.price < 20 AND p.supplier_id = s.id );
+
+zad 7
+1. SELECT p.name FROM products AS p JOIN orders_details AS o ON p.id = o.product_id WHERE o.id = ANY(SELECT o.id FROM orders_details AS o WHERE o.quantity = 10);
+2. SELECT p.name FROM products AS p JOIN orders_details AS o ON p.id = o.product_id WHERE o.id = ANY(SELECT o.id FROM orders_details as o WHERE o.quantity > 99);
+3. SELECT * FROM products AS p WHERE p.id = ALL(SELECT p.id FROM products AS p WHERE p.name);
+4. SELECT p.name FROM products AS p JOIN orders_details AS o ON p.id = o.product_id WHERE o.id = ALL(SELECT o.id FROM orders_details AS o WHERE o.quantity = 10);
+
+zad 8
+1. SELECT o.id, o.quantity, CASE WHEN o.quantity > 30 THEN 'sztuk jest wiecej niz 30' WHEN o.quantity < 30 THEN 'sztuk jest mniej niz 30' ELSE 'jest rowna 30' END AS ilosc FROM orders_details AS o;
+2. SELECT c.customer_name, c.city, c.country FROM customers AS c ORDER BY CASE WHEN c.city = NULL THEN c.country ELSE c.city END;
+
+zad 9
+1. SELECT p.id, p.name, SUM(o.quantity) AS suma FROM products AS p JOIN orders_details AS o ON o.product_id = p.id GROUP BY p.id ORDER BY suma DESC LIMIT 10;
+2. SELECT c.id, c.customer_name, COUNT(d.quantity) AS liczbaZamowien, SUM(d.quantity) AS sumaZamowionychRzeczy FROM customers AS c JOIN orders AS o ON o.customer_id = c.id JOIN orders_details AS d ON o.id = d.order_id GROUP BY c.id ORDER BY sumaZamowionychRzeczy DESC LIMIT 10;
+3. SELECT c.id, c.category_name, SUM(d.quantity) AS ilosc FROM categories AS c JOIN products AS p ON p.category_id = c.id JOIN orders_details AS d ON d.product_id = p.id GROUP BY c.id ORDER BY ilosc DESC LIMIT 1;
+4. SELECT c.id, c.category_name, SUM(d.quantity) AS ilosc FROM categories AS c JOIN products AS p ON p.category_id = c.id JOIN orders_details AS d ON d.product_id = p.id GROUP BY c.id;
+
+zad 10
+1. SELECT country FROM customers WHERE 1;
+2. SELECT DISTINCT(country) FROM customers WHERE 1;
+3. SELECT COUNT(a.d) AS "Nie powtarzajace sie kraje: " FROM (SELECT DISTINCT(country) AS d FROM customers GROUP BY country HAVING COUNT(country) = 1) AS a;
